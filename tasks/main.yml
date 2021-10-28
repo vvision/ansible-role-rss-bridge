@@ -1,0 +1,13 @@
+---
+- name: Requirements
+  import_tasks: requirements.yml
+
+- name: Installation
+  import_tasks: installation.yml
+
+- name: Configure single user mode
+  import_tasks: single-user.yml
+  when: rss_bridge_single_user | bool
+
+- name: Configure bridges
+  import_tasks: bridges.yml

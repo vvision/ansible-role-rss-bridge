@@ -1,0 +1,28 @@
+---
+- name: Create destination folder
+  file:
+    path: /var/www/rss-bridge
+    state: directory
+
+- name: Get zip
+  get_url:
+    url: "{{ rss_bridge_zip_url }}/{{ rss_bridge_zip_name }}.zip"
+    force: yes
+    dest: /tmp/rss_bridge.zip
+
+- name: Unarchive zip
+  ansible.builtin.unarchive:
+    src: /tmp/rss_bridge.zip
+    dest: /tmp
+    owner: "{{ rss_bridge_file_owner }}"
+    group: "{{ rss_bridge_file_group }}"
+    remote_src: yes
+
+- name: Copy directory to its destination path
+  ansible.builtin.copy:
+    src: "/tmp/rss-bridge-{{ rss_bridge_zip_name }}/"
+    dest: /var/www/rss-bridge
+    owner: "{{ rss_bridge_file_owner }}"
+    group: "{{ rss_bridge_file_group }}"
+    mode: 0600
+    remote_src: yes

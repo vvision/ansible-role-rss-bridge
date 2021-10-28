@@ -1,0 +1,24 @@
+---
+php_version: "7.4"
+# https://github.com/RSS-Bridge/rss-bridge/releases
+rss_bridge_zip_url: https://github.com/RSS-Bridge/rss-bridge/archive/refs/tags
+rss_bridge_zip_name: "2021-04-25"
+# Owner and group for destination directory
+rss_bridge_file_owner: www-data
+rss_bridge_file_group: www-data
+# Authentication
+rss_bridge_single_user: true
+rss_bridge_username: root
+rss_bridge_password: toor
+# Bridges configuration
+# Full list see:
+# https://github.com/RSS-Bridge/rss-bridge/tree/master/bridges
+rss_bridge_bridges_list: [
+  'Dilbert',
+  'Facebook',
+  'Instagram',
+  'LeBonCoin',
+  'Thingiverse',
+  'Twitter',
+  'Youtube'
+]

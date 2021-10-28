@@ -1,0 +1,12 @@
+---
+# https://github.com/RSS-Bridge/rss-bridge/wiki/Whitelisting
+# https://github.com/RSS-Bridge/rss-bridge/blob/master/whitelist.default.txt
+- name: Whitelist bridges
+  ansible.builtin.lineinfile:
+    path: /var/www/rss-bridge/whitelist.txt
+    owner: "{{ rss_bridge_file_owner }}"
+    group: "{{ rss_bridge_file_group }}"
+    line: '{{ item }}'
+    state: present
+    create: yes
+  with_items: "{{ rss_bridge_bridges_list }}"

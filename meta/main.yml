@@ -1,0 +1,20 @@
+---
+dependencies:
+  - role: geerlingguy.php-versions
+  - role: geerlingguy.php
+    vars:
+      php_packages_extra: [
+          'php{{ php_version }}-json',
+          'php{{ php_version }}-simplexml'
+      ]
+
+galaxy_info:
+  role_name: rss_bridge
+  author: vvision
+  description: Install and configure rss-bridge.
+  license: "MIT"
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - all

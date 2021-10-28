@@ -1,0 +1,35 @@
+---
+# https://github.com/rss-bridge/rss-bridge/wiki/Authentication#rss-bridge-authentication
+# https://github.com/RSS-Bridge/rss-bridge/blob/master/config.default.ini.php
+- name: Create config.ini.php from default file
+  ansible.builtin.copy:
+    src: /var/www/rss-bridge/config.default.ini.php
+    dest: /var/www/rss-bridge/config.ini.php
+    owner: "{{ rss_bridge_file_owner }}"
+    group: "{{ rss_bridge_file_group }}"
+    mode: 0600
+    remote_src: yes
+
+- name: Enable authentication
+  ansible.builtin.lineinfile:
+    path: /var/www/rss-bridge/config.ini.php
+    regexp: '^enable = false'
+    insertafter: '^[authentication]'
+    line: 'enable = true'
+    state: present
+
+- name: Configure username
+  ansible.builtin.lineinfile:
+    path: /var/www/rss-bridge/config.ini.php
+    regexp: '^username = ""'
+    insertafter: '^[authentication]'
+    line: 'username = "{{ rss_bridge_username }}"'
+    state: present
+
+- name: Configure password
+  ansible.builtin.lineinfile:
+    path: /var/www/rss-bridge/config.ini.php
+    regexp: '^passord = ""'
+    insertafter: '^[authentication]'
+    line: 'password = "{{ rss_bridge_password }}"'
+    state: present
