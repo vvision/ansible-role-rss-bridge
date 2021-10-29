@@ -47,6 +47,12 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install ansible molecule[docker] yamllint ansible-lint
 
+      - name: Install geerlingguy.php-versions.
+        run: ansible-galaxy install geerlingguy.php-versions
+
+      - name: Install geerlingguy.php.
+        run: ansible-galaxy install geerlingguy.php
+
       - name: Run Molecule tests.
         run: molecule test
         env:
